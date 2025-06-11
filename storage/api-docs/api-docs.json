@@ -1,0 +1,165 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cherie Blossom API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api": {},
+        "/api/bouquets": {
+            "get": {
+                "tags": [
+                    "Bouquets"
+                ],
+                "summary": "Get all bouquets",
+                "operationId": "2d49f4724542ef9eaf36b0ace7d625d0",
+                "responses": {
+                    "200": {
+                        "description": "List of bouquets"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Bouquets"
+                ],
+                "summary": "Create a new bouquet",
+                "operationId": "7de0f3bc754fa30d87bcb0c93a390d26",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "number"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Bouquet created"
+                    }
+                }
+            }
+        },
+        "/api/bouquets/{id}": {
+            "get": {
+                "tags": [
+                    "Bouquets"
+                ],
+                "summary": "Get bouquet by ID",
+                "operationId": "51cac19a2a5c904e0ee80c6d219bed1a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bouquet data"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Bouquets"
+                ],
+                "summary": "Update bouquet by ID",
+                "operationId": "cd339c71fc046a9c782c3c9f2ead0df5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "number"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Bouquet updated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Bouquets"
+                ],
+                "summary": "Delete bouquet by ID",
+                "operationId": "5c03af99ae101669aac13eaccba2f623",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bouquet deleted"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Bouquets",
+            "description": "Bouquets"
+        }
+    ]
+}
