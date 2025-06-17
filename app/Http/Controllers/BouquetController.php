@@ -115,18 +115,39 @@ class BouquetController extends Controller
     /**
      * @OA\Delete(
      *     path="/api/bouquets/{id}",
-     *     summary="Delete bouquet by ID",
      *     tags={"Bouquets"},
+     *     summary="Remove the specified item",
+     *     operationId="destroy",
+     *     @OA\Response(
+     *         response=404,
+     *         description="Item not found",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Successful",
+     *         @OA\JsonContent()
+     *     ),
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
+     *         description="ID of item that needs to be removed",
      *         required=true,
-     *         @OA\Schema(type="integer")
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
      *     ),
-     *     @OA\Response(response=200, description="Bouquet deleted")
+     *     security={{"passport":{}}}
      * )
      */
-    public function destroy(string $id)
+
+    public function destroy($id)
     {
         $bouquet = Bouquet::findOrFail($id);
         $bouquet->delete();
